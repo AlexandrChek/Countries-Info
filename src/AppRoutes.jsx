@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import { lazy } from 'react'
 import CountryList from './pages/CountryList'
-const CountryInfo = lazy(() => import('./pages/CountryInfo'))
+import CountryInfo from './pages/CountryInfo'
 
 const AppRoutes = () => {
     return (
