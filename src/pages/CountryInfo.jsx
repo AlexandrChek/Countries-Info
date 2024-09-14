@@ -6,6 +6,7 @@ import styles from '../styles/CountryInfo.module.css'
 const CountryInfo = () => {
   const { state } = useLocation()
   const [countryData, setCountryData] = useState(null)
+  const { flag, borderCountries, population } = countryData || {}
   const chartRef = useRef(null)
   const SERVER = import.meta.env.VITE_SERVER
 
@@ -19,11 +20,14 @@ const CountryInfo = () => {
     })
       .then((response) => response.json())
       .then((data) => setCountryData(data))
-      .catch((error) => console.error('Error retrieving country data:', error))
+      .catch((error) => {
+        alert('There is no information available about this country yet')
+        console.error('Error retrieving country data:', error)
+      })
   }, [state])
 
   useEffect(() => {
-    if (countryData) {
+    if (population) {
       const canvas = document.getElementById('populationChart')
 
       if (canvas) {
@@ -37,10 +41,10 @@ const CountryInfo = () => {
         chartRef.current = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: countryData.population.map((item) => item.year),
+            labels: population.map((item) => item.year),
             datasets: [{
               label: 'Population Over Time',
-              data: countryData.population.map((item) => item.value),
+              data: population.map((item) => item.value),
               borderColor: 'rgba(75, 192, 192, 1)',
               fill: false
             }]
@@ -48,7 +52,7 @@ const CountryInfo = () => {
         })
       }
     }
-  }, [countryData])
+  }, [population])
 
   // Destroying the chart when unmounting the component
   useEffect(() => {
@@ -59,38 +63,36 @@ const CountryInfo = () => {
     }
   }, [])
 
-  if (!countryData) {
-    return <p>Loading...</p>
-  }
-
   return (
     <div>
-      <h1 className={styles.title}>
-        {state.name}
-        <img src={countryData.flag} alt="flag" className={styles.flag} />
-      </h1>
-      {countryData.borderCountries.length
-        ? (
-          <>
-            <h4>Border Countries</h4>
-            <ul>
-              {countryData.borderCountries.map((borderCountry, index) => (
-                <li key={index}>
-                  <Link
-                    to={`/country/${borderCountry.countryCode}`} 
-                    state={{name: borderCountry.commonName, countryCode: borderCountry.countryCode}}
-                  >
-                    {borderCountry.commonName}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </>
-        )
-        : null
-      }
-      <h4>Population Over Time</h4>
-      <canvas id="populationChart"></canvas>
+      <div className={styles.titleWrapper}>
+        <h1 className={styles.title}>{state.name}</h1>
+        {flag && <img src={flag} alt="flag" className={styles.flag} />}
+      </div>
+      {!countryData && <h4>Loading...</h4>}
+      {borderCountries && borderCountries.length && (
+        <>
+          <h4>Border Countries</h4>
+          <ul>
+            {borderCountries.map((borderCountry, index) => (
+              <li key={index}>
+                <Link
+                  to={`/country/${borderCountry.countryCode}`} 
+                  state={{name: borderCountry.commonName, countryCode: borderCountry.countryCode}}
+                >
+                  {borderCountry.commonName}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {population && (
+        <>
+          <h4>Population Over Time</h4>
+          <canvas id="populationChart"></canvas>
+        </>
+      )}
     </div>
   )
 }

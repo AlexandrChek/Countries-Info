@@ -9,12 +9,16 @@ const CountryList = () => {
     fetch(`${SERVER}/api/countries`)
       .then((response) => response.json())
       .then((data) => setCountries(data))
-      .catch((error) => console.error('Error getting list of countries:', error))
+      .catch((error) => {
+        console.error('Error getting list of countries:', error)
+        alert('Temporary server problems. Please try again later.')
+      })
   }, [])
 
   return (
     <div>
       <h1>Country List</h1>
+      {!countries.length && <h4>Loading...</h4>}
       <ul>
         {countries.map((country) => (
           <li key={country.countryCode}>
