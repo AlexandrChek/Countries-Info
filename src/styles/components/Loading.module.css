@@ -1,0 +1,9 @@
+.loading {
+    color: lime;
+    opacity: 1;
+    animation: blinking 0.7s linear infinite;
+}
+
+@keyframes blinking {
+    to {opacity: 0.5;}
+}

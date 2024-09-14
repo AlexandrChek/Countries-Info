@@ -1,7 +1,8 @@
 import { useLocation, Link } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 import { Chart } from 'chart.js/auto'
-import styles from '../styles/CountryInfo.module.css'
+import Loading from '../components/Loading'
+import styles from '../styles/pages/CountryInfo.module.css'
 
 const CountryInfo = () => {
   const { state } = useLocation()
@@ -64,36 +65,39 @@ const CountryInfo = () => {
   }, [])
 
   return (
-    <div>
+    <>
       <div className={styles.titleWrapper}>
         <h1 className={styles.title}>{state.name}</h1>
         {flag && <img src={flag} alt="flag" className={styles.flag} />}
       </div>
-      {!countryData && <h4>Loading...</h4>}
-      {borderCountries && borderCountries.length && (
-        <>
-          <h4>Border Countries</h4>
-          <ul>
-            {borderCountries.map((borderCountry, index) => (
-              <li key={index}>
-                <Link
-                  to={`/country/${borderCountry.countryCode}`} 
-                  state={{name: borderCountry.commonName, countryCode: borderCountry.countryCode}}
-                >
-                  {borderCountry.commonName}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      {!countryData && <Loading />}
+      {borderCountries && borderCountries.length
+        ? (
+          <>
+            <h4>Border Countries</h4>
+            <ul>
+              {borderCountries.map((borderCountry, index) => (
+                <li key={index}>
+                  <Link
+                    to={`/country/${borderCountry.countryCode}`} 
+                    state={{name: borderCountry.commonName, countryCode: borderCountry.countryCode}}
+                  >
+                    {borderCountry.commonName}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+        : null
+      }
       {population && (
         <>
           <h4>Population Over Time</h4>
           <canvas id="populationChart"></canvas>
         </>
       )}
-    </div>
+    </>
   )
 }
 

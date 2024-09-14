@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Loading from '../components/Loading'
 
 const CountryList = () => {
-  const [countries, setCountries] = useState([])
+  const [countries, setCountries] = useState(null)
   const SERVER = import.meta.env.VITE_SERVER
 
   useEffect(() => {
@@ -16,22 +17,26 @@ const CountryList = () => {
   }, [])
 
   return (
-    <div>
+    <>
       <h1>Country List</h1>
-      {!countries.length && <h4>Loading...</h4>}
-      <ul>
-        {countries.map((country) => (
-          <li key={country.countryCode}>
-            <Link
-                to={`/country/${country.countryCode}`}
-                state={country}
-            >
-              {country.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+      {!countries
+        ? <Loading />
+        : (
+          <ul>
+            {countries.map((country) => (
+              <li key={country.countryCode}>
+                <Link
+                    to={`/country/${country.countryCode}`}
+                    state={country}
+                >
+                  {country.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </>
   )
 }
 
