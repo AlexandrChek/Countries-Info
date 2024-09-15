@@ -1,8 +1,12 @@
-# React + Vite
+# Countries Info
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### **It is a fully responsive cross-browser web application (SPA) with front-end and back-end based on React + React Router. The back-end is based on Node.js + Express.js (the code is here: https://glitch.com/edit/#!/countries-info-be). This application provides information about the population dynamics of different countries and about neighboring countries.**
 
-Currently, two official plugins are available:
+## Installation
+### npm i
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Run development mode
+### npm run dev
+
+## Run production mode
+### npm run build
