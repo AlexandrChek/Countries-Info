@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import Loading from '../components/Loading'
+import CountryLink from '../components/CountryLink'
+import styles from '../styles/pages/CountryList.module.css'
 
 const CountryList = () => {
   const [countries, setCountries] = useState(null)
@@ -18,19 +19,19 @@ const CountryList = () => {
 
   return (
     <>
-      <h1>Country List</h1>
+      <h1 className={styles.title}>Country List</h1>
       {!countries
         ? <Loading />
         : (
           <ul>
             {countries.map((country) => (
               <li key={country.countryCode}>
-                <Link
+                <CountryLink
                     to={`/country/${country.countryCode}`}
                     state={country}
                 >
                   {country.name}
-                </Link>
+                </CountryLink>
               </li>
             ))}
           </ul>

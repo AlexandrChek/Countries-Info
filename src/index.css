@@ -14,6 +14,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --pale-golden: rgb(248, 248, 228);
+  --root-padding-vert: 2.25rem;
+  --root-padding-horiz: 0.7rem;
 }
 
 ::-moz-focus-inner {
@@ -27,7 +31,7 @@ body {
 }
 
 #root {
-  padding: 1rem;
+  padding: var(--root-padding-vert) var(--root-padding-horiz);
   text-align: center;
 }
 
@@ -40,20 +44,16 @@ a {
 a:hover {
   color: #9ea3fc;
   background-color: #383838;
-  box-shadow: inset 0 0 3px 1px rgb(248, 248, 228);
-  border-radius: 8px;
-  font-size: 1.1rem;
-  line-height: 1.35rem;
 }
 
 ul {
   list-style: none;
   padding: 0;
-  margin: 0.8rem 0 1.75rem 0;
+  margin: 0;
 }
 
 h1, h2, h3, h4 {
-  line-height: 1.1;
+  line-height: 1;
   margin: 0;
 }
 

@@ -1,15 +1,12 @@
-.titleWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.title {
     margin-bottom: 1.5rem;
 }
 
-.title {
-    margin-right: 0.2rem;
+.flag {
+    height: 2rem;
+    margin-left: 0.2rem;
 }
 
-.flag {
-    height: 2.5rem;
+.countryList {
+    margin-bottom: 1.2rem;
 }

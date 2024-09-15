@@ -2,6 +2,7 @@ import { useLocation, Link } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 import { Chart } from 'chart.js/auto'
 import Loading from '../components/Loading'
+import CountryLink from '../components/CountryLink'
 import styles from '../styles/pages/CountryInfo.module.css'
 
 const CountryInfo = () => {
@@ -66,24 +67,24 @@ const CountryInfo = () => {
 
   return (
     <>
-      <div className={styles.titleWrapper}>
-        <h1 className={styles.title}>{state.name}</h1>
+      <h2 className={styles.title}>
+        {state.name}
         {flag && <img src={flag} alt="flag" className={styles.flag} />}
-      </div>
+      </h2>
       {!countryData && <Loading />}
       {borderCountries && borderCountries.length
         ? (
           <>
             <h4>Border Countries</h4>
-            <ul>
+            <ul className={styles.countryList}>
               {borderCountries.map((borderCountry, index) => (
                 <li key={index}>
-                  <Link
+                  <CountryLink
                     to={`/country/${borderCountry.countryCode}`} 
                     state={{name: borderCountry.commonName, countryCode: borderCountry.countryCode}}
                   >
                     {borderCountry.commonName}
-                  </Link>
+                  </CountryLink>
                 </li>
               ))}
             </ul>
@@ -94,7 +95,10 @@ const CountryInfo = () => {
       {population && (
         <>
           <h4>Population Over Time</h4>
-          <canvas id="populationChart"></canvas>
+          {population && population.length
+            ? <canvas id="populationChart"></canvas>
+            : <p>No data</p>
+          }
         </>
       )}
     </>

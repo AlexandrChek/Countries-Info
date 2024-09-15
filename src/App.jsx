@@ -1,4 +1,5 @@
 import AppRoutes from './AppRoutes'
+import HomeLink from './components/HomeLink'
 
 function App() {
   const setHeight = () => {
@@ -11,7 +12,12 @@ function App() {
     window.addEventListener('resize', setHeight)
   }
 
-  return <AppRoutes/>
+  return (
+    <>
+      <HomeLink />
+      <AppRoutes />
+    </>
+  )
 }
 
 export default App

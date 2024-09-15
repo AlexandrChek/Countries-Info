@@ -1,0 +1,7 @@
+.homeLink {
+    position: absolute;
+    top: 0.5rem;
+    left: var(--root-padding-horiz);
+    border: 1px solid var(--pale-golden);
+    border-radius: 8px;
+}
