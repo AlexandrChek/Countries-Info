@@ -1,15 +1,14 @@
-import { useLocation, Link } from 'react-router-dom'
-import { useEffect, useState, useRef } from 'react'
-import { Chart } from 'chart.js/auto'
+import { useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import Loading from '../components/Loading'
 import CountryLink from '../components/CountryLink'
+import PopulationChart from '../components/PopulationChart'
 import styles from '../styles/pages/CountryInfo.module.css'
 
 const CountryInfo = () => {
   const { state } = useLocation()
   const [countryData, setCountryData] = useState(null)
   const { flag, borderCountries, population } = countryData || {}
-  const chartRef = useRef(null)
   const SERVER = import.meta.env.VITE_SERVER
 
   useEffect(() => {
@@ -27,43 +26,6 @@ const CountryInfo = () => {
         console.error('Error retrieving country data:', error)
       })
   }, [state])
-
-  useEffect(() => {
-    if (population) {
-      const canvas = document.getElementById('populationChart')
-
-      if (canvas) {
-        const ctx = canvas.getContext('2d')
-
-        // Destroying the previous chart
-        if (chartRef.current) {
-          chartRef.current.destroy()
-        }
-
-        chartRef.current = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: population.map((item) => item.year),
-            datasets: [{
-              label: 'Population Over Time',
-              data: population.map((item) => item.value),
-              borderColor: 'rgba(75, 192, 192, 1)',
-              fill: false
-            }]
-          }
-        })
-      }
-    }
-  }, [population])
-
-  // Destroying the chart when unmounting the component
-  useEffect(() => {
-    return () => {
-      if (chartRef.current) {
-        chartRef.current.destroy()
-      }
-    }
-  }, [])
 
   return (
     <>
@@ -96,7 +58,7 @@ const CountryInfo = () => {
         <>
           <h4>Population Over Time</h4>
           {population && population.length
-            ? <canvas id="populationChart"></canvas>
+            ? <PopulationChart population={population} />
             : <p>No data</p>
           }
         </>
