@@ -2,6 +2,11 @@
   position: absolute;
   top: 0.5rem;
   left: var(--root-padding-horiz);
-  border: 1px solid var(--pale-golden);
+  border: 1px solid rgba(248, 248, 228, 0.7);
   border-radius: 10px;
+  padding: 0 0.55rem 0.1rem 0.55rem;
+}
+
+.homeLink:hover {
+  border: 1px solid rgba(248, 248, 228, 1);
 }

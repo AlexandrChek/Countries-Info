@@ -1,5 +1,9 @@
+.country {
+  padding: 0 0.7rem 0.2rem 0.7rem;
+}
+
 .country:hover {
-  box-shadow: inset 0 0 3px 1px var(--pale-golden);
+  box-shadow: inset 0 0 3px 1px rgb(248, 248, 228);
   font-size: 1.1rem;
   line-height: 1.35rem;
   border-radius: 8px;

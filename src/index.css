@@ -15,9 +15,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --pale-golden: rgb(248, 248, 228);
-  --root-padding-vert: 2.25rem;
-  --root-padding-horiz: 0.7rem;
+  --root-padding-horiz: 0.57rem;
 }
 
 ::-moz-focus-inner {
@@ -31,7 +29,7 @@ body {
 }
 
 #root {
-  padding: var(--root-padding-vert) var(--root-padding-horiz);
+  padding: 2.25rem var(--root-padding-horiz);
   text-align: center;
 }
 
@@ -39,7 +37,6 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: none;
-  padding: 0 0.7rem 0.2rem 0.7rem;
 }
 a:hover {
   color: #9ea3fc;
