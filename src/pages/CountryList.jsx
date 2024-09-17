@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Loading from '../components/Loading';
-import CountryLink from '../components/CountryLink';
+import LinkList from '../components/LinkList';
 import styles from '../styles/pages/CountryList.module.css';
 
 const CountryList = () => {
@@ -20,19 +20,7 @@ const CountryList = () => {
   return (
     <>
       <h1 className={styles.title}>Country List</h1>
-      {!countries ? (
-        <Loading />
-      ) : (
-        <ul>
-          {countries.map((country) => (
-            <li key={country.countryCode}>
-              <CountryLink to={`/country/${country.countryCode}`} state={country}>
-                {country.name}
-              </CountryLink>
-            </li>
-          ))}
-        </ul>
-      )}
+      {!countries ? <Loading /> : <LinkList countries={countries} />}
     </>
   );
 };

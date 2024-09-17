@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Loading from '../components/Loading';
-import CountryLink from '../components/CountryLink';
+import LinkList from '../components/LinkList';
 import PopulationChart from '../components/PopulationChart';
 import styles from '../styles/pages/CountryInfo.module.css';
 
@@ -20,7 +20,17 @@ const CountryInfo = () => {
       body: JSON.stringify(state),
     })
       .then((response) => response.json())
-      .then((data) => setCountryData(data))
+      .then((data) => {
+        const { borderCountries } = data;
+
+        borderCountries.forEach((country, index) => {
+          const { commonName, countryCode } = country;
+          borderCountries[index] = { name: commonName, countryCode };
+        });
+
+        data.borderCountries = borderCountries;
+        setCountryData(data);
+      })
       .catch((error) => {
         alert('There is no information available about this country yet');
         console.error('Error retrieving country data:', error);
@@ -37,21 +47,7 @@ const CountryInfo = () => {
       {borderCountries && borderCountries.length ? (
         <>
           <h4>Border Countries</h4>
-          <ul className={styles.countryList}>
-            {borderCountries.map((borderCountry, index) => (
-              <li key={index}>
-                <CountryLink
-                  to={`/country/${borderCountry.countryCode}`}
-                  state={{
-                    name: borderCountry.commonName,
-                    countryCode: borderCountry.countryCode,
-                  }}
-                >
-                  {borderCountry.commonName}
-                </CountryLink>
-              </li>
-            ))}
-          </ul>
+          <LinkList countries={borderCountries} className={styles.countryList} />
         </>
       ) : null}
       {population && (
