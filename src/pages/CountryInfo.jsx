@@ -20,17 +20,7 @@ const CountryInfo = () => {
       body: JSON.stringify(state),
     })
       .then((response) => response.json())
-      .then((data) => {
-        const { borderCountries } = data;
-
-        borderCountries.forEach((country, index) => {
-          const { commonName, countryCode } = country;
-          borderCountries[index] = { name: commonName, countryCode };
-        });
-
-        data.borderCountries = borderCountries;
-        setCountryData(data);
-      })
+      .then((data) => setCountryData(data))
       .catch((error) => {
         alert('There is no information available about this country yet');
         console.error('Error retrieving country data:', error);
