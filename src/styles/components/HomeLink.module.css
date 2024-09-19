@@ -1,5 +1,5 @@
 .homeLink {
-  position: absolute;
+  position: fixed;
   top: 0.5rem;
   left: var(--root-padding-horiz);
   border: 1px solid rgba(248, 248, 228, 0.7);
