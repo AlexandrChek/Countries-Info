@@ -4,7 +4,7 @@ const useSetMinHeight = () => {
   useEffect(() => {
     const setMinHeight = () => {
       const vh = window.innerHeight;
-      document.documentElement.style.setProperty('--vh', `${vh}`);
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
 
     if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
