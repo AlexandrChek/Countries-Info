@@ -12,11 +12,11 @@ const PopulationChart = ({ population }) => {
       chartRef.current = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: population.map((item) => item.year),
+          labels: population.map(item => item.year),
           datasets: [
             {
               label: 'Population Over Time',
-              data: population.map((item) => item.value),
+              data: population.map(item => item.value),
               borderColor: 'rgba(75, 192, 192, 1)',
               fill: false,
             },

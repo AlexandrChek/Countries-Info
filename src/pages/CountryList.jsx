@@ -9,9 +9,9 @@ const CountryList = () => {
 
   useEffect(() => {
     fetch(`${SERVER}/api/countries`)
-      .then((response) => response.json())
-      .then((data) => setCountries(data))
-      .catch((error) => {
+      .then(response => response.json())
+      .then(data => setCountries(data))
+      .catch(error => {
         console.error('Error getting list of countries:', error);
         alert('Temporary server problems. Please try again later.');
       });

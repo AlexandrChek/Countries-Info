@@ -19,9 +19,9 @@ const CountryInfo = () => {
       },
       body: JSON.stringify(state),
     })
-      .then((response) => response.json())
-      .then((data) => setCountryData(data))
-      .catch((error) => {
+      .then(response => response.json())
+      .then(data => setCountryData(data))
+      .catch(error => {
         alert('There is no information available about this country yet');
         console.error('Error retrieving country data:', error);
       });
