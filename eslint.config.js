@@ -11,10 +11,9 @@ export default [
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
-      ecmaVersion: 2020,
+      ecmaVersion: 'latest',
       globals: globals.browser,
       parserOptions: {
-        ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
       },
@@ -34,7 +33,9 @@ export default [
       'react/jsx-no-target-blank': 'off',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'prettier/prettier': 'error',
+      'react/prop-types': 'off',
+      'react/no-unescaped-entities': 'off',
     },
-    extends: [eslintConfigPrettier],
   },
+  eslintConfigPrettier,
 ];

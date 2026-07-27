@@ -18,6 +18,10 @@
   --root-padding-horiz: 0.57rem;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 ::-moz-focus-inner {
   border: none;
   padding: 0;
@@ -37,6 +41,7 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: none;
+  word-break: break-word;
 }
 a:hover {
   color: #9ea3fc;

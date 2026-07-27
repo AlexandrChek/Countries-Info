@@ -1,9 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const base = process.env.NODE_ENV === 'production' ? '/Countries-Info/' : '/';
-
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
-  base,
-});
+  base: mode === 'production' ? '/Countries-Info/' : '/',
+}));

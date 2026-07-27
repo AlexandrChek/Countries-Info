@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { handleError } from '../methods';
 import Loading from '../components/Loading';
 import LinkList from '../components/LinkList';
 import PopulationChart from '../components/PopulationChart';
@@ -21,11 +22,8 @@ const CountryInfo = () => {
     })
       .then(response => response.json())
       .then(data => setCountryData(data))
-      .catch(error => {
-        alert('There is no information available about this country yet');
-        console.error('Error retrieving country data:', error);
-      });
-  }, [state]);
+      .catch(error => handleError(error, 'country info'));
+  }, [SERVER, state]);
 
   return (
     <>

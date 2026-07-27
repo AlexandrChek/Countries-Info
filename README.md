@@ -1,15 +1,61 @@
-# Countries Info
+# Countries Info 🌍
 
-### **It is a fully responsive cross-browser web application (SPA) with front-end and back-end based on React + React Router. The back-end is based on Node.js + Express.js (the code is [here](https://github.com/AlexandrChek/Countries-Info-BE)). This application provides information about the population dynamics of different countries and about neighboring countries.**
+A fully responsive single-page React application that provides information about countries.
 
-## Installation
+The application displays a list of countries on the home page. Users can select a country to view such information as its flag, neighboring countries and a population change chart over time. Neighboring countries are clickable, allowing users to navigate between country pages.
 
-### npm i
+## Demo
 
-## Run development mode
+https://alexandrchek.github.io/Countries-Info/
 
-### npm run dev
+## Features
 
-## Run production mode
+- Display a list of countries
+- View information about a selected country:
+  - Show country flag
+  - Navigate to neighboring countries
+  - Display population changes over time using a chart
+- Responsive design for different screen sizes
 
-### npm run build
+## Technologies
+
+- React 18
+- React Router 6
+- Vite
+- Chart.js
+- CSS Modules
+- Responsive CSS layout
+
+## Installation and Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/AlexandrChek/Countries-Info.git
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Build the project for production:
+
+```bash
+npm run build
+```
+
+## Backend
+
+The application uses a separate backend server to retrieve country data.
+
+Backend repository:
+
+https://github.com/AlexandrChek/Countries-Info-BE

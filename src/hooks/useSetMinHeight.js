@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const useSetMinHeight = () => {
   useEffect(() => {
     const setMinHeight = () => {
-      const vh = window.innerHeight;
+      const vh = window.visualViewport?.height || window.innerHeight;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
 

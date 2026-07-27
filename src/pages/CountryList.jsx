@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { handleError } from '../methods';
 import Loading from '../components/Loading';
 import LinkList from '../components/LinkList';
 import styles from '../styles/pages/CountryList.module.css';
@@ -11,11 +12,8 @@ const CountryList = () => {
     fetch(`${SERVER}/api/countries`)
       .then(response => response.json())
       .then(data => setCountries(data))
-      .catch(error => {
-        console.error('Error getting list of countries:', error);
-        alert('Temporary server problems. Please try again later.');
-      });
-  }, []);
+      .catch(error => handleError(error, 'country list'));
+  }, [SERVER]);
 
   return (
     <>
